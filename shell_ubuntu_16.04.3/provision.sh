@@ -1,7 +1,7 @@
-#!bin/bash
+#!/bin/bash
 set -x
 
-source proxy_bash
+#source proxy_bash
 
 POD_NW_CIDR="10.100.0.0/16"
 #Bootstrap tokens 
@@ -23,7 +23,7 @@ master()
 worker()
 {
   kubeadm reset
-  kubeadm join --token ${KUBETOKEN} ${MASTER_IP}:6443
+  kubeadm join --token ${KUBETOKEN} --discovery-token-unsafe-skip-ca-verification ${MASTER_IP}:6443
 }
 
 #./provision.sh master
