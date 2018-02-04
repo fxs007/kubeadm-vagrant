@@ -2,15 +2,7 @@
 #user root
 set -x
 
-export https_proxy=http://proxy.esl.cisco.com:8080
-export ftp_proxy=http://proxy.esl.cisco.com:8080
-#export no_proxy="localhost,127.0.0.1,.cisco.com,10.74.113.207,10.74.113.212"
-export no_proxy=engci-maven.cisco.com
-
-printf -v ip_68 '%s,' 10.74.68.{1..255}
-printf -v ip_117 '%s,' 10.74.117.{1..255}
-#172.19.216.114 maglav debootstrap server
-export no_proxy="localhost,127.0.0.1,.cisco.com,172.19.216.114,${ip_68%,},${ip_117%,}"
+source proxy_bash
 
 # Source: http://kubernetes.io/docs/getting-started-guides/kubeadm/
 
@@ -42,3 +34,4 @@ systemctl stop kubelet && systemctl start kubelet
 swapoff -a
 #update hosts file
 #update proxy in docker
+#for i in $(cat docker_images); do docker pull $i;done

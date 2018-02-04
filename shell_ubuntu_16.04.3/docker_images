@@ -2,6 +2,10 @@ gcr.io/google_containers/kube-apiserver-amd64:v1.9.2
 gcr.io/google_containers/kube-controller-manager-amd64:v1.9.2
 gcr.io/google_containers/kube-scheduler-amd64:v1.9.2
 gcr.io/google_containers/etcd-amd64:3.1.11
+quay.io/coreos/flannel:v0.10.0-amd64
+gcr.io/google_containers/kube-apiserver-amd64:v1.9.2
+gcr.io/google_containers/k8s-dns-kube-dns-amd64:1.14.7
+gcr.io/google_containers/k8s-dns-dnsmasq-nanny-amd64:1.14.7
 registry:2
 nginx:1.9
 gcr.io/google_containers/pause-amd64:3.0
