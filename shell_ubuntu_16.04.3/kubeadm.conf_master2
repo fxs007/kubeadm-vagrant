@@ -1,0 +1,29 @@
+apiVersion: kubeadm.k8s.io/v1alpha1
+kind: MasterConfiguration
+api:
+  advertiseAddress: 10.74.68.153
+  bindPort: 9443
+networking:
+  serviceSubnet: 10.100.0.0/16
+  podSubnet: 10.168.0.0/16
+apiServerCertSANs:
+  - 10.100.0.1
+apiServerExtraArgs:
+  runtime-config: batch/v2alpha1
+  anonymous-auth: "true"
+  basic-auth-file: /etc/kubernetes/maglev/ssl/basic_auth.csv
+  service-node-port-range: 80-32767
+etcd:
+  extraArgs:
+    initial-advertise-peer-urls: "http://10.74.68.153:2380"
+    data-dir: /var/lib/etcd
+    advertise-client-urls: "http://10.74.68.153:2379"
+    listen-client-urls: http://0.0.0.0:2379
+    listen-peer-urls: "http://10.74.68.153:2380"
+    name: "master-153"
+    initial-cluster: "master-151=http://10.74.68.151:2380,master-153=http://10.74.68.153:2380"
+    initial-cluster-state: existing
+certificatesDir: /etc/kubernetes/maglev/ssl
+token: b029ee.968a33e8d8e6bb0d
+tokenTTL: 0
+nodeName: 10.74.68.153
