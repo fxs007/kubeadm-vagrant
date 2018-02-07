@@ -1,7 +1,7 @@
 apiVersion: kubeadm.k8s.io/v1alpha1
 kind: MasterConfiguration
 api:
-  advertiseAddress: 10.74.68.153
+  advertiseAddress: 10.74.68.151
   bindPort: 6443
 networking:
   serviceSubnet: 10.100.0.0/24
@@ -25,14 +25,14 @@ etcd:
   image: ""
   keyFile: ""
   extraArgs:
-    initial-advertise-peer-urls: "http://10.74.68.153:2380"
+    initial-advertise-peer-urls: "http://10.74.68.151:2380"
     data-dir: /var/lib/etcd
-    advertise-client-urls: "http://10.74.68.153:2379"
+    advertise-client-urls: "http://10.74.68.151:2379"
     listen-client-urls: http://0.0.0.0:2379
-    listen-peer-urls: "http://10.74.68.153:2380"
-    name: "master-153"
-    initial-cluster: "master-151=http://10.74.68.151:2380,master-153=http://10.74.68.153:2380"
-    initial-cluster-state: existing
+    listen-peer-urls: "http://10.74.68.151:2380"
+    name: "master-151"
+    initial-cluster: "master-151=http://10.74.68.151:2380"
+    initial-cluster-state: new
 imageRepository: gcr.io/google_containers
 kubeProxy:
   config:
@@ -76,7 +76,7 @@ networking:
   dnsDomain: cluster.local
   podSubnet: 10.100.0.0/24
   serviceSubnet: 10.96.0.0/24
-nodeName: master-153
+nodeName: master-151
 token: "b029ee.968a33e8d8e6bb0d"
 tokenTTL: 0s
 unifiedControlPlaneImage: ""

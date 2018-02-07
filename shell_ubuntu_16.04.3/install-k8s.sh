@@ -35,3 +35,4 @@ swapoff -a
 #update hosts file
 #update proxy in docker
 #for i in $(cat docker_images); do docker pull $i;done
+

@@ -4,6 +4,9 @@ export ftp_proxy=http://proxy.esl.cisco.com:8080
 
 printf -v ip_68 '%s,' 10.74.68.{1..255}
 printf -v ip_117 '%s,' 10.74.117.{1..255}
+printf -v ip_10_100_0 '%s,' 10.100.0.{1..255}
+printf -v ip_10_168_0 '%s,' 10.168.0.{1..255}
+printf -v ip_10_96_0 '%s,' 10.96.0.{1..255}
 #172.19.216.114 maglav debootstrap server
-export no_proxy="localhost,127.0.0.1,.cisco.com,172.19.216.114,${ip_68%,},${ip_117%,},master-151,worker-152,master-153"
+export no_proxy="localhost,127.0.0.1,.cisco.com,172.19.216.114,${ip_68%,},${ip_117%,},${ip_10_100_0%,},${ip_10_168_0%,},${ip_10_96_0%,},master-151,worker-152,master-153"
 
