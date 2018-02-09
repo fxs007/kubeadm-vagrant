@@ -22,6 +22,8 @@ master_new()
 
 master_join()
 {
+#sudo scp /etc/kubernetes/pki/* cisco@10.74.68.152:/etc/kubernetes/pki/
+#ssh cisco@10.74.68.152 rm /etc/kubernetes/pki/apiserver.*
   #etcd cluster
   curl http://10.74.68.151:2379/v2/members
   curl -X POST -H "Content-Type: application/json" -d '
