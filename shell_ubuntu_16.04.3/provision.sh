@@ -11,13 +11,15 @@ MASTER_IP="10.74.68.151"
 master_new()
 {
   #kubeadm init --apiserver-advertise-address=${MASTER_IP} --pod-network-cidr=${POD_NW_CIDR} --token ${KUBETOKEN} --token-ttl 0
-  kubeadm init --config ./kubeadm.conf_master1 --pod-network-cidr "10.168.0.0/24"
+  #kubeadm init --config ./kubeadm.conf_master1 --pod-network-cidr "10.168.0.0/24"
+  kubeadm init --config ./kubeadm.conf_master1
   
   mkdir -p $HOME/.kube
   sudo cp -Rf /etc/kubernetes/admin.conf $HOME/.kube/config
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
   
-  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+  #kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+  kubectl apply -f ./kube-flannel.yml
 }
 
 master_join()
@@ -36,8 +38,6 @@ master_join()
   sudo cp -Rf /etc/kubernetes/admin.conf $HOME/.kube/config
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
   
-  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-
 }
 
 worker()

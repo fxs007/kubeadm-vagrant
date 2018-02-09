@@ -4,8 +4,9 @@ api:
   advertiseAddress: 10.74.68.151
   bindPort: 6443
 networking:
+  dnsDomain: cluster.local
   serviceSubnet: 10.100.0.0/24
-  podSubnet: 10.168.0.0/24
+  podSubnet: 10.168.0.0/22
 apiServerCertSANs:
   - 10.100.0.1
 apiServerExtraArgs:
@@ -72,10 +73,6 @@ kubeProxy:
     udpTimeoutMilliseconds: 250ms
 kubeletConfiguration: {}
 kubernetesVersion: v1.9.2
-networking:
-  dnsDomain: cluster.local
-  podSubnet: 10.100.0.0/24
-  serviceSubnet: 10.96.0.0/24
 nodeName: master-151
 token: "b029ee.968a33e8d8e6bb0d"
 tokenTTL: 0s
