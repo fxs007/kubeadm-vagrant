@@ -73,7 +73,7 @@ data:
     }
   net-conf.json: |
     {
-      "Network": "10.168.0.0/22",
+      "Network": "10.168.0.0/20",
       "SubnetLen": 24,
       "Backend": {
         "Type": "vxlan"

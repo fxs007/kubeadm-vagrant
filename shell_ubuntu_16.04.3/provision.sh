@@ -24,8 +24,10 @@ master_new()
 
 master_join()
 {
-#sudo scp /etc/kubernetes/pki/* cisco@10.74.68.152:/etc/kubernetes/pki/
-#ssh cisco@10.74.68.152 rm /etc/kubernetes/pki/apiserver.*
+#At old master
+#sudo scp /etc/kubernetes/pki/* cisco@10.74.68.153:/etc/kubernetes/pki/
+#ssh cisco@10.74.68.153 rm /etc/kubernetes/pki/apiserver.*
+
   #etcd cluster
   curl http://10.74.68.151:2379/v2/members
   curl -X POST -H "Content-Type: application/json" -d '
@@ -48,6 +50,10 @@ worker()
 
 reset()
 {
+#At another master node
+#kubectl drain master-153
+#kubectl delete node master-153
+#monitor if deleted master IP is removed in endpoint kubernetes and configmap kube-proxy
   kubeadm reset
   ifconfig cni0 down
   ip link delete cni0
