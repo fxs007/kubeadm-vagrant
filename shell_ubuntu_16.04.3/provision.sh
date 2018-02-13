@@ -48,12 +48,22 @@ worker()
   kubeadm join --token ${KUBETOKEN} --discovery-token-unsafe-skip-ca-verification ${MASTER_IP}:6443
 }
 
+test_pod()
+{
+  kubectl create -f pod_nginx.yaml
+  #curl 10.168.1.2
+}
+
 reset()
 {
 #At another master node
 #kubectl drain master-153
 #kubectl delete node master-153
 #monitor if deleted master IP is removed in endpoint kubernetes and configmap kube-proxy
+#KUBE_EDITOR="vim" kubectl edit svc/kubernetes
+#kubectl edit configmap kube-proxy --namepsace=kube-system
+#kubectl delete pod <kube-proxy-old> --namespace=kube-system
+
   kubeadm reset
   ifconfig cni0 down
   ip link delete cni0
