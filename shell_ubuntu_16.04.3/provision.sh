@@ -42,6 +42,26 @@ master_join()
   
 }
 
+master3_join()
+{
+#At old master
+#sudo scp /etc/kubernetes/pki/* cisco@10.74.68.154:/etc/kubernetes/pki/
+#ssh cisco@10.74.68.154 rm /etc/kubernetes/pki/apiserver.*
+
+  #etcd cluster
+  curl http://10.74.68.151:2379/v2/members
+  curl -X POST -H "Content-Type: application/json" -d '
+{"peerURLs": ["http://10.74.68.154:2380"]}
+'  http://10.74.68.151:2379/v2/members
+
+  kubeadm init --config kubeadm.conf_master3
+  
+  mkdir -p $HOME/.kube
+  sudo cp -Rf /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  
+}
+
 worker()
 {
   #kubeadm join --token b029ee.968a33e8d8e6bb0d 10.74.68.151:6443 --discovery-token-ca-cert-hash sha256:e5b86401e844f766347f8cc336763b37ac83317f65a1327f0728ef981f403d36
